@@ -75,6 +75,3 @@ int main()
     return 0;
 }
 
-/* Program Output 
-Assignment 2a
-*/
