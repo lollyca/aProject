@@ -1,6 +1,6 @@
 //Heloisa Santos
 //07/05
-//Mini Project 1
+//Mini Project 2.1better
 
 #include <iostream>
 #include <iomanip>
