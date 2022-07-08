@@ -1,5 +1,5 @@
 //Heloisa Santos
-//07/05
+//07/06
 //Mini Project 3
 
 #include <iostream>
@@ -9,78 +9,79 @@
 
 using namespace std;
 
-int calcVolume (int l, int w, int h);
+void introDisplay();
+int calcVolume(int l, int w, int h);
+
+const float
+SMALL = 1.5,
+MEDIUM = 2.5,
+LARGE = 3.0;
 
 
 int main()
 {
-    const float small = 1.5 , medium = 2.5, large = 3.0;
     int length, width, height, volume;
     float cost, tax, total, size;
-    string volume_size1, volume_size2, volume_size3, volume_size_total;
-
-    cin >> length >> width >> height;
-    do 
+    string vs1, vs2, vs3, vst;
+//----------------------------------------------------------------------------------------------//
+    introDisplay();
+//----------------------------------------------------------------------------------------------//
+    cout << "\n";
+    cout << "Enter package dimensions (feet): " << endl;
+    cout << "Length: ";
+    cin >> length;
+    cout << "Width: "; 
+    cin >> width;
+    cout << "Height: ";
+    cin >> height;
+    cout << "\n";
+//----------------------------------------------------------------------------------------------//
+    volume = calcVolume(length, width, height);
+//----------------------------------------------------------------------------------------------//
+    while (volume >= 65) 
     {
-        cout << "\n";
-
-        cout << "East County Box Company " << endl;
-        cout << "\n";
-        cout << "Sales Program (version 1.5)" << endl;
+        cout << "This package exceeds the 65 cubic foot limit. Please input again." << "\n";
         cout << "\n";
         cout << "Enter package dimensions (feet): " << endl;
-        cout << "Length: " << length << "\n";
-        cout << "Width: " << width << "\n";
-        cout << "Height: " << height << "\n";
+        cout << "Length: ";
+        cin >> length;
+        cout << "Width: "; 
+        cin >> width;
+        cout << "Height: ";
+        cin >> height;
         cout << "\n";
-        
-        cout << "This package exceeds the 65 cubic foot limit. Please input again." << "\n";
-        cin >> length >> width >> height;
-
-        volume = calcVolume (length, width, height);
-
-    } while (volume >= 65);
-
-    
+        volume = calcVolume(length, width, height);
+    }
+//-----------------------------------------------------------------------------------------------------------------------------//  
     if (volume < 65)
     {
         
         if (volume >= 45 && volume < 65) 
         {
-            size = large;
+            size = LARGE;
         }
         else if (volume >= 15 && volume < 45) 
         {
-            size = medium;
+            size = MEDIUM;
         }
         else if (volume < 15) 
         {
-            size = small;
+            size = SMALL;
         }
 
-        cout << "\n";
-        cout << "Enter package dimensions (feet): " << endl;
-        cout << "Length: " << length << "\n";
-        cout << "Width: " << width << "\n";
-        cout << "Height: " << height << "\n";
-        cout << "\n";
-
         cout << "Package Volume: " << volume << " cubic feet" << "\n";
-
-        cout << fixed << setprecision(2) << showpoint;
-
+        
+//-----------------------------------------------------------------------------------------------------------------------------//
         cout << "\n";
         cost = volume * size;
-        cost = static_cast<double>(cost);
-
-        stringstream test;
-        test << fixed << setprecision(2) << showpoint;
-        test << size;
-        test >> volume_size2;
-        volume_size1 = "Shipping Cost ($";
-        volume_size3 = " per cubic foot)";
-        volume_size_total = volume_size1 + volume_size2 + volume_size3;
-        cout << setw(45) << left << volume_size_total << setw(2) << left << "$" << setw(8) << right << cost << endl;
+        stringstream ssize;
+        ssize << fixed << setprecision(2) << showpoint;
+        ssize << size;
+        ssize >> vs2;
+        vs1 = "Shipping Cost ($";
+        vs3 = " per cubic foot)";
+        vst = vs1 + vs2 + vs3;
+        cout << setw(45) << left << vst << setw(2) << left << "$" << setw(8) << right << cost << endl;
 
 
         tax = cost * 0.0775;
@@ -90,19 +91,24 @@ int main()
         total = cost + tax;
         cout << setw(45) << left << "Total" << setw(2) << left << "$" << setw(8) << right << total << endl;
         cout << "\n";
+//-----------------------------------------------------------------------------------------------------------------------------//
 
     }
     return 0;
 }
-
 int calcVolume (int l, int w, int h) 
 {
-    return l * w * h;
+    int v = l * w * h;
+    return v;
 }
 
-/* Program Output
-5 5 4
+void introDisplay () {
+    cout << "East County Box Company " << endl;
+    cout << "\n";
+    cout << "Sales Program (version 1.5)" << endl;
+}
 
+/* Program Output 
 East County Box Company
 
 Sales Program (version 1.5)
@@ -113,17 +119,17 @@ Width: 5
 Height: 4
 
 This package exceeds the 65 cubic foot limit. Please input again.
-5 3 4
 
-Enter package dimensions (feet):
+Enter package dimensions (feet): 
 Length: 5
 Width: 3
 Height: 4
 
 Package Volume: 60 cubic feet
 
-Shipping Cost ($3.00 per cubic foot)         $   180.00
+Shipping Cost ($3.00 per cubic foot)         $      180
 Sales Tax (0.0775)                           $    13.95
 
 Total                                        $   193.95
 */
+ 
